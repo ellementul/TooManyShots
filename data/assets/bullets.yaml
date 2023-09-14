@@ -1,0 +1,4 @@
+- name: "Standart"
+  speed: 2000
+  hp: 10
+  damage: 10

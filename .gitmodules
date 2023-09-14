@@ -1,0 +1,3 @@
+[submodule "TooManyBulletsHost"]
+	path = TooManyBulletsHost
+	url = https://github.com/ellementul/TooManyBulletsHost.git

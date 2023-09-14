@@ -4,6 +4,7 @@
   "description": "Game",
   "main": "index.html",
   "scripts": {
+    "start": "cd ./nwjs && nw.exe --disable-features=ProcessPerSiteUpToMainFrameThreshold ../",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
