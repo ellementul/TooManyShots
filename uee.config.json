@@ -2,7 +2,8 @@
   "signalAddress": "ws://192.168.0.4:8080",
   "paths": {
     "assets": {
-      "world": "./data/assets/world.yaml"
+      "world": "./data/assets/world.yaml",
+      "textures": "./data/assets/textures.json"
     }
   }
 }

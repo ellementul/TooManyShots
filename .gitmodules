@@ -1,3 +1,6 @@
 [submodule "TooManyBulletsHost"]
 	path = TooManyBulletsHost
 	url = https://github.com/ellementul/TooManyBulletsHost.git
+[submodule "TooManyBulletsClient"]
+	path = TooManyBulletsClient
+	url = https://github.com/ellementul/TooManyBulletsClient.git

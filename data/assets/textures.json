@@ -1,0 +1,16 @@
+{
+  "error": "data/assets/error_tile.svg",
+
+  "platforms": "data/assets/tilesets/platforms.svg",
+  "trash1": "data/assets/tilesets/trash1.svg",
+  "trash2": "data/assets/tilesets/trash2.svg",
+  "spawns": "data/assets/tilesets/empty.svg",
+  "teleport": "data/assets/teleport.svg",
+  "gun": "data/assets/gun_arm.svg",
+  "squart": "data/assets/squart.svg",
+
+  "default_head": "data/assets/characters/bob/head.svg",
+  "default_body": "data/assets/characters/bob/body.svg",
+  "default_bullet": "data/assets/default_bullet.svg",
+  "default_cursor": "data/assets/cursor.svg"
+}
