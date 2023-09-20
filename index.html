@@ -22,17 +22,6 @@
   }
 </style>
 <body>
-  <script>
-    const win = nw.Window.get()
-    win.enterFullscreen()
-
-    const { FactoryHost } = require("./TooManyBulletsHost")
-    const host = FactoryHost()
-    host.run()
-
-    const { PlayerFactory } = require("./TooManyBulletsClient")
-    const player = PlayerFactory()
-    player.run()
-  </script>  
+  <script  type="module" src="./index.js"></script> 
 </body>
 </html>
