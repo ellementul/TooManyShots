@@ -8,18 +8,27 @@ staticServer.start(function () {
   console.log('Server listening to', staticServer.port)
 })
 
-const wsPort =  await portfinder.getPortPromise()
-const wsServer = new WSServer(wsPort)
-wsServer.start()
-
-const win = nw.Window.get()
-win.enterFullscreen()
-win.showDevTools()
-
+const { PeerHostTransport, PeerClientTransport } = require('./uee-p2p-transport')
 const { HostFactory } = require("./TooManyBulletsHost")
-const host = HostFactory({ address: `ws://localhost:${wsPort}` })
-host.run()
-
 const { PlayerFactory } = require("./TooManyBulletsClient")
-const player = PlayerFactory({ address: `ws://localhost:${wsPort}`, baseUrl: `http://localhost:${staticPort}/` })
-player.run()
+
+const hostTransport = new PeerHostTransport
+hostTransport.onOpen(accessSpacesIds => {
+  const host = HostFactory({ transport: hostTransport })
+  host.run()
+  
+  const clientTransport = new PeerClientTransport(accessSpacesIds.client)
+  clientTransport.url = `http://localhost:${staticPort}/`
+  clientTransport.onOpen(() => {
+    console.log("Load client...")
+    const player = PlayerFactory({ transport: clientTransport })
+    player.run()
+  })
+})
+
+// const win = nw.Window.get()
+// win.enterFullscreen()
+// win.showDevTools()
+
+
+

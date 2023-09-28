@@ -4,3 +4,6 @@
 [submodule "TooManyBulletsClient"]
 	path = TooManyBulletsClient
 	url = https://github.com/ellementul/TooManyBulletsClient.git
+[submodule "uee-p2p-transport"]
+	path = uee-p2p-transport
+	url = https://github.com/ellementul/uee-p2p-transport.git
