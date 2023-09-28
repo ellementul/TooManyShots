@@ -1,5 +1,5 @@
 const portfinder = require('portfinder')
-const WSServer = require('@ellementul/uee-ws-server')
+
 const StaticServer = require('static-server')
 
 const staticPort = 8080
