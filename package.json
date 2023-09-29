@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ellementul/TooManyShots#readme",
   "dependencies": {
+    "@ellementul/uee-peer-transport": "^1.0.0",
     "@ellementul/uee-ws-server": "^0.9.0",
     "portfinder": "^1.0.32",
     "static-server": "^2.2.1"
