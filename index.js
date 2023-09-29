@@ -1,9 +1,8 @@
 const portfinder = require('portfinder')
 
-
 const StaticServer = require('static-server')
 
-const staticPort = 8080
+const staticPort = await portfinder.getPortPromise()
 const staticServer = new StaticServer({ rootPath: './data/', port: staticPort })
 staticServer.start(function () {
   console.log('Server listening to', staticServer.port)
