@@ -1,6 +1,6 @@
 {
   "error": "assets/error_tile.svg",
-  "background": "assets/background.png",
+  "background": "assets/background.svg",
 
   "platforms": "assets/tilesets/platforms.svg",
   "trash1": "assets/tilesets/trash1.svg",
