@@ -1,30 +1,19 @@
-const portfinder = require('portfinder')
+const { runStatic } = require('./static')
+const { runHost } = require('./host')
+const { runClient } = require('./client')
 
-const StaticServer = require('static-server')
+const url = await runStatic()
 
-const staticPort = await portfinder.getPortPromise()
-const staticServer = new StaticServer({ rootPath: './data/', port: staticPort })
-staticServer.start(function () {
-  console.log('Server listening to', staticServer.port)
-})
+let hostToken = prompt("Введите токен сервера если он у вас есть!")
 
-const { PeerHostTransport, PeerClientTransport } = require('@ellementul/uee-peer-transport')
-const { HostFactory } = require("./TooManyBulletsHost")
-const { PlayerFactory } = require("./TooManyBulletsClient")
+if(!hostToken) {
+  const accessSpacesIds = await runHost()
+  hostToken = accessSpacesIds.client
+  alert(`Токен вашего сервера: ${hostToken}`)
+}
 
-const hostTransport = new PeerHostTransport
-hostTransport.onOpen(accessSpacesIds => {
-  const host = HostFactory({ transport: hostTransport })
-  host.run()
-  
-  const clientTransport = new PeerClientTransport(accessSpacesIds.client)
-  clientTransport.url = `http://localhost:${staticPort}/`
-  clientTransport.onOpen(() => {
-    console.log("Load client...")
-    const player = PlayerFactory({ transport: clientTransport })
-    player.run()
-  })
-})
+await runClient(hostToken, url)
+console.log("Host and client are running!")
 
 // const win = nw.Window.get()
 // win.enterFullscreen()

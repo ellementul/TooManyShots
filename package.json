@@ -5,8 +5,7 @@
   "main": "index.html",
   "chromium-args": "--mixed-context",
   "scripts": {
-    "start": "cd ./nwjs && nw.exe ../",
-    "build": "node ./build.mjs",
+    "start": "cd ../nwjs && nw.exe ../TMSRaw",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,8 +27,5 @@
     "@ellementul/uee-ws-server": "^0.9.0",
     "portfinder": "^1.0.32",
     "static-server": "^2.2.1"
-  },
-  "devDependencies": {
-    "nw-builder": "^4.4.1"
   }
 }
