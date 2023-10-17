@@ -1,3 +1,4 @@
+const localIpAddress = require("local-ip-address")
 const portfinder = require('portfinder')
 const StaticServer = require('static-server')
 
@@ -7,7 +8,8 @@ async function runStatic() {
   staticServer.start(function () {
     console.log('Server listening to', staticServer.port)
   })
-  return `http://localhost:${staticPort}/`
+  const ip = localIpAddress()
+  return new URL(`http://${ip}:${staticPort}/`)
 }
 
 module.exports = { runStatic }

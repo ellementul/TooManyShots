@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ellementul/TooManyShots#readme",
   "dependencies": {
     "@ellementul/uee-peer-transport": "^1.0.0",
+    "local-ip-address": "^1.0.0",
     "portfinder": "^1.0.32",
     "static-server": "^2.2.1"
   },

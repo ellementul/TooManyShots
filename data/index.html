@@ -108,16 +108,12 @@
   </style>
   <body>
     <script  type="module">
-      const { runStatic } = require('./static')
-      const url = await runStatic()
+      await import('./index.js')
 
-      await import('./data/index.js')
+      console.log('getting url....')
+      const url = new URL(window.location.href)
 
       await App.Factory(url)
-
-      // const win = nw.Window.get()
-      // win.enterFullscreen()
-      // win.showDevTools()
     </script>
     <section id="prompt" class="modal hidden">
       <input id="token" placeholder="Введите токен сервера"/>
