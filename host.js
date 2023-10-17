@@ -1,8 +1,9 @@
 const { PeerHostTransport } = require('@ellementul/uee-peer-transport')
 const { HostFactory } = require("./TooManyBulletsHost")
 
-function runHost() {
+function runHost(url) {
   const hostTransport = new PeerHostTransport
+  hostTransport.url = url
 
   return new Promise((resolve, reject) => {
     hostTransport.onOpen(accessSpacesIds => {

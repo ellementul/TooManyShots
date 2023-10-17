@@ -22,6 +22,13 @@
   }
 </style>
 <body>
-  <script  type="module" src="./index.js"></script> 
+  <script  type="module">
+    const { runStatic } = require('./static')
+    const url = await runStatic()
+
+    await import('./data/index.js')
+
+    await App.Factory(url)
+  </script> 
 </body>
 </html>

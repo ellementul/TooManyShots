@@ -1,0 +1,8 @@
+{
+  "paths": {
+    "assets": {
+      "world": "./assets/world.yaml",
+      "textures": "./assets/textures.json"
+    }
+  }
+}
