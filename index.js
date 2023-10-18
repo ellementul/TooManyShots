@@ -1,5 +1,5 @@
-const { runClient } = require('./client')
-const { runHost } = require('./host')
+import { runClient } from './client'
+import { runHost } from './host'
 
 export async function Factory(url) {
   let hostToken = url.searchParams.get('token')

@@ -1,4 +1,4 @@
-const { PeerClientTransport } = require('@ellementul/uee-peer-transport')
+import { PeerClientTransport } from '@ellementul/uee-peer-transport'
 const { PlayerFactory } = require("./TooManyBulletsClient")
 
 function runClient(serverPeerId, url) {
@@ -15,4 +15,4 @@ function runClient(serverPeerId, url) {
   })
 }
 
-module.exports = { runClient }
+export { runClient }

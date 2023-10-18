@@ -1,4 +1,4 @@
-const { PeerHostTransport } = require('@ellementul/uee-peer-transport')
+import { PeerHostTransport } from '@ellementul/uee-peer-transport'
 const { HostFactory } = require("./TooManyBulletsHost")
 
 function runHost(url) {
@@ -15,4 +15,4 @@ function runHost(url) {
   })
 }
 
-module.exports = { runHost }
+export { runHost }
