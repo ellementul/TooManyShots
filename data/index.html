@@ -108,17 +108,17 @@
   </style>
   <body>
     <script  type="module">
-      await import('./index.js')
+      const { Factory } = await import('./index.js')
 
       console.log('getting url....')
       const url = new URL(window.location.href)
 
-      await App.Factory(url)
+      await Factory(url)
     </script>
     <section id="prompt" class="modal hidden">
       <input id="token" placeholder="Введите токен сервера"/>
       <button class="btn btn-connect">Подключится к серверу</button>
-      <button class="btn btn-create">Создать сервер</button>
+      <button class="btn btn-create  hidden">Создать сервер</button>
     </section>
     <section id="host" class="modal hidden">
       <p>
