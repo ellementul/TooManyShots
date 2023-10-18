@@ -1,10 +1,14 @@
 const path = require("path")
+const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-  entry: path.resolve(__dirname, "./index.js"),
+  entry: {
+    host: path.resolve(__dirname, "./host.js"),
+    client: path.resolve(__dirname, "./client.js"),
+  },
   output: {
     path: path.resolve(__dirname, "data"),
-    filename: "index.js",
+    filename: "[name].js",
     library: "App",
     libraryTarget: "umd"
   },
@@ -20,5 +24,12 @@ module.exports = {
   mode: "development",
   resolve: {
     fallback: { "path": false }
-  }
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        path.resolve(__dirname, "index.js")
+      ],
+    }),
+  ]
 }

@@ -1,7 +1,7 @@
 import { PeerHostTransport } from '@ellementul/uee-peer-transport'
 const { HostFactory } = require("./TooManyBulletsHost")
 
-function runHost(url) {
+export function runHost(url) {
   const hostTransport = new PeerHostTransport
   hostTransport.url = url
 
@@ -14,5 +14,3 @@ function runHost(url) {
     })
   })
 }
-
-export { runHost }

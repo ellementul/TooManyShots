@@ -1,7 +1,7 @@
 import { PeerClientTransport } from '@ellementul/uee-peer-transport'
 const { PlayerFactory } = require("./TooManyBulletsClient")
 
-function runClient(serverPeerId, url) {
+export function runClient(serverPeerId, url) {
   const clientTransport = new PeerClientTransport(serverPeerId)
   clientTransport.url = url
 
@@ -14,5 +14,3 @@ function runClient(serverPeerId, url) {
     })
   })
 }
-
-export { runClient }

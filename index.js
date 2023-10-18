@@ -1,5 +1,5 @@
-import { runClient } from './client'
-import { runHost } from './host'
+// import { runClient } from './client.js'
+// import { runHost } from './host.js'
 
 export async function Factory(url) {
   let hostToken = url.searchParams.get('token')
@@ -9,7 +9,8 @@ export async function Factory(url) {
   if(!hostToken)
     hostToken = await promptToken(url)
 
-  await runClient(hostToken, url)
+  await import(url + 'client.js')
+  await App.runClient(hostToken, url)
   console.log("Host and client are running!")
 }
 
@@ -76,8 +77,10 @@ function getTokenFromInput() {
 function getTokenFromHost(url) {
   return new Promise(resolve => {
     const create = async () => {
+      await import(url + 'host.js')
+
       createBth.removeEventListener('click', create)
-      const accessSpacesIds = await runHost(url)
+      const accessSpacesIds = await App.runHost(url)
 
       resolve(accessSpacesIds.client)
     }
