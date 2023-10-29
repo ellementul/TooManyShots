@@ -4,3 +4,6 @@
 [submodule "TooManyBulletsClient"]
 	path = TooManyBulletsClient
 	url = https://github.com/ellementul/TooManyBulletsClient.git
+[submodule "data"]
+	path = data
+	url = https://github.com/ellementul/TMS-browser.git
