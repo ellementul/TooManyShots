@@ -5,7 +5,7 @@
   "main": "index.html",
   "chromium-args": "--mixed-context",
   "scripts": {
-    "start": "webpack build && cd ../nwjs && nw.exe ../TMSRaw",
+    "start": "webpack build && cd ../nwjs && nw.exe ../TooManyShots",
     "build": "webpack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
