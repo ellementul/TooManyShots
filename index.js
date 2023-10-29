@@ -90,7 +90,8 @@ function getTokenFromHost(url) {
 }
 
 async function showToken(url, hostToken) {
-  const fullUrl = new URL(url)
+  // const fullUrl = new URL(url)
+  const fullUrl = new URL("https://ellementul.github.io/TMS-browser/")
   fullUrl.searchParams.set('token', hostToken)
 
   hostTokenInput.value = hostToken
