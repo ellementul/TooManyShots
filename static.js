@@ -6,7 +6,7 @@ async function runStatic() {
   const staticPort = await portfinder.getPortPromise()
   const staticServer = new StaticServer({ rootPath: './data/', port: staticPort })
   staticServer.start(function () {
-    console.log('Server listening to', staticServer.port)
+    console.info('Server listening to', staticServer.port)
   })
   const ip = localIpAddress()
   return new URL(`http://${ip}:${staticPort}/`)

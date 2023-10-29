@@ -4,14 +4,13 @@
 export async function Factory(url) {
   let hostToken = url.searchParams.get('token')
   url = url.origin + url.pathname
-  console.log('url', url)
 
   if(!hostToken)
     hostToken = await promptToken(url)
 
   await import(url + 'client.js')
   await App.runClient(hostToken, url)
-  console.log("Host and client are running!")
+  console.info("Host and client are running!")
 }
 
 const prompt = document.querySelector("#prompt")

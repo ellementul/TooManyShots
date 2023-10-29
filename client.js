@@ -7,7 +7,7 @@ export function runClient(serverPeerId, url) {
 
   return new Promise((resolve, reject) => {
     clientTransport.onOpen(() => {
-      console.log("Load client...")
+      console.info("Load client...")
       const player = PlayerFactory({ transport: clientTransport })
       player.run()
       resolve()
