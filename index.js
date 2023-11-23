@@ -1,6 +1,3 @@
-// import { runClient } from './client.js'
-// import { runHost } from './host.js'
-
 export async function Factory(url) {
   let hostToken = url.searchParams.get('token')
   url = url.origin + url.pathname
@@ -13,100 +10,132 @@ export async function Factory(url) {
   console.info("Host and client are running!")
 }
 
-const prompt = document.querySelector("#prompt")
-const connectBth = document.querySelector(".btn-connect")
-const createBth = document.querySelector(".btn-create")
-const tokenInput = document.querySelector("#token")
-
-const host = document.querySelector("#host")
-const hostTokenInput = document.querySelector("#hostToken")
-const hostUrlLink = document.querySelector("#hostUrl")
-const closeBth = document.querySelector(".btn-close")
-
-const open = function () {
-  this.classList.remove("hidden")
-}
-
-const close = function () {
-  this.classList.add("hidden")
-}
-
-prompt.open = open
-prompt.close = close
-
-host.open = open
-host.close = close
-
-
 async function promptToken(url) {
-  prompt.open()
+  const promptEl = createPromptModalWindow()
 
-  const token = await getToken(url)
-  prompt.close()
-  host.open()
+  const token = await getToken(url, promptEl)
+  promptEl.remove()
+
+  const hostAddressEl = createAddressModalWindow()
   
-  await showToken(url, token)
-  host.close()
+  await showToken(url, token, hostAddressEl)
+  hostAddressEl.remove()
 
   return token
 }
 
-async function getToken(url) {
-  const inputPromise = getTokenFromInput()
-  const hostPromise = getTokenFromHost(url)
+async function getToken(url, promptEl) {
+  const inputPromise = getTokenFromInput(promptEl)
+  const hostPromise = getTokenFromHost(url, promptEl)
   
   return Promise.any([inputPromise, hostPromise])
 }
 
-function getTokenFromInput() {
+function getTokenFromInput(prompt) {
   return new Promise(resolve => {
     const checkToken = () => {
-      const token = tokenInput.value.trim()
+      const token = prompt.tokenInput.value.trim()
       if(token) {
-        connectBth.removeEventListener('click', checkToken)
+        prompt.connectButton.removeEventListener('click', checkToken)
 
         resolve(token)
       }
     }
 
-    connectBth.addEventListener('click', checkToken)
+    prompt.connectButton.addEventListener('click', checkToken)
   })
 }
 
-function getTokenFromHost(url) {
+function getTokenFromHost(url, prompt) {
   return new Promise(resolve => {
     const create = async () => {
       await import(url + 'host.js')
 
-      createBth.removeEventListener('click', create)
+      prompt.createButton.removeEventListener('click', create)
       const accessSpacesIds = await App.runHost(url)
 
       resolve(accessSpacesIds.client)
     }
 
-    createBth.addEventListener('click', create)
+    prompt.createButton.addEventListener('click', create)
   })
 }
 
-async function showToken(url, hostToken) {
+async function showToken(url, hostToken, hostAddressEl) {
   // const fullUrl = new URL(url)
   const fullUrl = new URL("https://ellementul.github.io/TMS-browser/")
   fullUrl.searchParams.set('token', hostToken)
 
-  hostTokenInput.value = hostToken
-  hostUrlLink.src = fullUrl.href
-  hostUrlLink.textContent = fullUrl.href
+  hostAddressEl.tokenInput.value = hostToken
+  hostAddressEl.url.src = fullUrl.href
+  hostAddressEl.url.textContent = fullUrl.href
 
   return new Promise(resolve => {
     const close = async () => {
       if(token) {
-        closeBth.removeEventListener('click', close)
+        hostAddressEl.closeButton.removeEventListener('click', close)
 
         resolve()
       }
     }
 
-    closeBth.addEventListener('click', close)
+    hostAddressEl.closeButton.addEventListener('click', close)
   })
 }
 
+function createPromptModalWindow() {
+  const prompt = document.createElement("section")
+  prompt.setAttribute("id", "prompt")
+  prompt.classList.add("modal")
+  document.body.append(prompt)
+
+  const tokenInput = document.createElement("input")
+  tokenInput.setAttribute("id", "token")
+  tokenInput.setAttribute("placeholder", "Введите токен сервера")
+  prompt.tokenInput = tokenInput
+  prompt.append(tokenInput)
+
+  const connectBth = document.createElement("button")
+  connectBth.textContent = "Подключится к серверу"
+  connectBth.classList.add("btn")
+  connectBth.classList.add("btn-connect")
+  prompt.connectButton = connectBth
+  prompt.append(connectBth)
+
+  const createBth = document.createElement("button")
+  createBth.textContent = "Создать сервер"
+  createBth.classList.add("btn")
+  createBth.classList.add("btn-create")
+  prompt.createButton = createBth
+  prompt.append(createBth)
+
+  return prompt
+}
+
+function createAddressModalWindow() {
+  const address = document.createElement("section")
+  address.setAttribute("id", "address")
+  address.classList.add("modal")
+  document.body.append(address)
+
+  const url = document.createElement("a")
+  url.setAttribute("id", "hostUrl")
+  const p = document.createElement("p")
+  p.append(url)
+  address.url = url
+  address.append(p)
+
+  const tokenInput = document.createElement("input")
+  tokenInput.setAttribute("id", "token")
+  address.tokenInput = tokenInput
+  address.append(tokenInput)
+
+  const closeBth = document.createElement("button")
+  closeBth.textContent = "OK"
+  closeBth.classList.add("btn")
+  closeBth.classList.add("btn-close")
+  address.closeButton = closeBth
+  address.append(closeBth)
+
+  return address
+}

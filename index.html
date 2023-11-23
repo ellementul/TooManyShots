@@ -33,6 +33,7 @@
       opacity: 0.8;
       user-select: none;
     }
+    
     .modal {
       display: flex;
       flex-direction: column;
@@ -119,17 +120,5 @@
       // win.enterFullscreen()
       // win.showDevTools()
     </script>
-    <section id="prompt" class="modal hidden">
-      <input id="token" placeholder="Введите токен сервера"/>
-      <button class="btn btn-connect">Подключится к серверу</button>
-      <button class="btn btn-create">Создать сервер</button>
-    </section>
-    <section id="host" class="modal hidden">
-      <p>
-        <a id="hostUrl">Ссылочка</a>
-      </p>
-      <input id="hostToken"/>
-      <button class="btn btn-close">ОК</button>
-    </section>
   </body>
 </html>
