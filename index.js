@@ -1,7 +1,7 @@
 export async function Factory(url) {
   const path = url.origin + url.pathname
 
-  await import(path + 'ui.js')
+  await import(path + 'choose-host.js')
   const promptToken = App.promptToken
   await import(path + 'host.js')
   const runHost = App.runHost
