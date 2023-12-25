@@ -3,6 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   entry: {
+    "choose-host": path.resolve(__dirname, "./choose-host.js"),
     host: path.resolve(__dirname, "./host.js"),
     client: path.resolve(__dirname, "./client.js"),
   },
