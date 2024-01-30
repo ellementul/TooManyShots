@@ -1,11 +1,11 @@
 {
   "name": "too-many-shots",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Game",
   "main": "index.html",
   "chromium-args": "--mixed-context",
   "scripts": {
-    "start": "webpack build && cd ../nwjs && nw.exe ../TooManyShots",
+    "start": "webpack build && ../nwjs/nw ./",
     "build": "webpack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
